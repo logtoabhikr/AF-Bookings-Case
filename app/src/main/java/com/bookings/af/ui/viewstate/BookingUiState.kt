@@ -7,9 +7,3 @@ sealed interface BookingsUiState {
     data class Success(val bookings: List<Booking>) : BookingsUiState
     data class Error(val message: String) : BookingsUiState
 }
-
-sealed interface DetailUiState {
-    data object Loading : DetailUiState
-    data object Error : DetailUiState
-    data class Success(val booking: Booking) : DetailUiState
-}
