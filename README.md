@@ -3,6 +3,11 @@
 AFBookings - Android Assessment
 simulating an airline booking management interface. Built with Kotlin, Jetpack Compose, and Clean Architecture, featuring pixel-perfect UI implementation and robust engineering practices.
 
+### Screenshots
+
+<img width="240" height="400" alt="Screenshot_20260209_192030" src="https://github.com/user-attachments/assets/3a5fd93f-bcb4-4b61-97bc-770525d6dcb9" />
+<img width="240" height="400" alt="Screenshot_20260209_192044" src="https://github.com/user-attachments/assets/87dfcc55-bdfe-4311-b567-e5431f174d51" />
+
 ### Project Overview
 This project demonstrates a production-grade implementation of a booking detail screen and list view, focusing on:
 
@@ -28,11 +33,6 @@ Image Loading: Coil
 Navigation: Jetpack Navigation & Adaptive Navigation Suite
 
 Build System: Gradle 8.+ (Version Catalogs)
-### Screenshots
-
-<img width="240" height="400" alt="Screenshot_20260209_192030" src="https://github.com/user-attachments/assets/3a5fd93f-bcb4-4b61-97bc-770525d6dcb9" />
-<img width="240" height="400" alt="Screenshot_20260209_192044" src="https://github.com/user-attachments/assets/87dfcc55-bdfe-4311-b567-e5431f174d51" />
-
 
 ### Architecture
 The app follows the Clean Architecture principles:
