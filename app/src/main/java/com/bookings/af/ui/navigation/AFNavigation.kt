@@ -7,6 +7,7 @@ import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.navigation.NavHostController
@@ -45,7 +46,7 @@ fun AFNavGraph(
             )
         }
         composable(AppDestinations.Settings.route) {
-            Box(modifier.fillMaxSize()) { Text(Constants.ACCOUNT_TITLE) }
+            Box(modifier.fillMaxSize(),contentAlignment = Alignment.Center) { Text(Constants.ACCOUNT_TITLE) }
         }
         composable(
             route = "detail/{bookingId}",
