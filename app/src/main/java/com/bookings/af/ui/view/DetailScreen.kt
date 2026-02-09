@@ -60,7 +60,7 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.AsyncImage
 import com.bookings.af.R
-import com.bookings.af.ui.components.NormalTextWithBold
+import com.bookings.af.ui.components.CustomBoldTextView
 import com.bookings.af.ui.components.ReferencePnrView
 import com.bookings.af.ui.theme.AFBlue
 import com.bookings.af.ui.theme.AFBluePill
@@ -246,7 +246,7 @@ fun DetailContents(
 
                     Spacer(Modifier.height(24.dp))
 
-                    NormalTextWithBold(
+                    CustomBoldTextView(
                         modifier = Modifier.padding(horizontal = 36.dp),
                         stringResource(id = R.string.label_trip_duration),
                         booking.totalDuration
@@ -424,7 +424,7 @@ fun TransferCard(transfer: Segment.Transfer) {
             .fillMaxWidth()
             .height(48.dp)
     ) {
-        NormalTextWithBold(
+        CustomBoldTextView(
             modifier = Modifier
                 .wrapContentHeight()
                 .padding(horizontal = 16.dp),

@@ -1,5 +1,6 @@
 package com.bookings.domain.entity
 
+//@Stable
 data class Booking(
     val id: String,
     val origin: String,
