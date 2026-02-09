@@ -1,0 +1,127 @@
+[
+  {
+    "id": "1",
+    "origin": "Paris",
+    "destination": "San Francisco",
+    "image_url": "https://images.unsplash.com/photo-1502602898657-3e91760cbb34",
+    "reference": "JHUCPR",
+    "traveler_count": 1,
+    "status": "UPCOMING",
+    "total_duration": "11h35",
+    "departure_label": "Nov 8, 2024",
+    "trip_type": "Round Trip",
+    "segments": [
+      {
+        "type": "FLIGHT",
+        "date": "Sat, Oct 21",
+        "time_scheduled": "07:05",
+        "time_actual": "07:01",
+        "airport": "Pau, Pau Pyrénées Airport",
+        "status_label": "ARRIVED",
+        "is_delayed": false
+      },
+      {
+        "type": "FLIGHT",
+        "date": "Sat, Oct 21",
+        "time_scheduled": "08:35",
+        "time_actual": "08:31",
+        "airport": "Paris, Paris-Charles de Gaulle airport",
+        "status_label": null,
+        "is_delayed": false
+      },
+      {
+        "type": "TRANSFER",
+        "duration": "1h00"
+      },
+      {
+        "type": "FLIGHT",
+        "date": "Sat, Oct 21",
+        "time_scheduled": "09:35",
+        "time_actual": "09:54",
+        "airport": "Paris, Paris-Charles de Gaulle airport",
+        "status_label": "ARRIVED",
+        "is_delayed": true
+      },
+      {
+        "type": "FLIGHT",
+        "date": "Sat, Oct 21",
+        "time_scheduled": "11:45",
+        "time_actual": "11:37",
+        "airport": "Lisbon, Humberto Delgado Airport",
+        "status_label": null,
+        "is_delayed": false
+      }
+    ]
+  },
+  {
+    "id": "2",
+    "origin": "Pau",
+    "destination": "Lisbon",
+    "image_url": "https://images.unsplash.com/photo-1525625293386-3f8f99389edd",
+    "reference": "RJREYZ",
+    "traveler_count": 3,
+    "status": "UPCOMING",
+    "total_duration": "5h10",
+    "departure_label": "Sat, Oct 21",
+    "trip_type": "Round trip",
+    "segments": [
+      {
+        "type": "FLIGHT",
+        "date": "Sat, Oct 21",
+        "time_scheduled": "07:05",
+        "time_actual": "07:01",
+        "airport": "Pau, Pau Pyrénées Airport",
+        "status_label": "ARRIVED",
+        "is_delayed": false
+      },
+      {
+        "type": "TRANSFER",
+        "duration": "1h00"
+      },
+      {
+        "type": "FLIGHT",
+        "date": "Sat, Oct 21",
+        "time_scheduled": "09:35",
+        "time_actual": "09:54",
+        "airport": "Paris, Paris-Charles de Gaulle airport",
+        "status_label": "ARRIVED",
+        "is_delayed": true
+      },
+      {
+        "type": "FLIGHT",
+        "date": "Sat, Oct 21",
+        "time_scheduled": "11:45",
+        "time_actual": "11:37",
+        "airport": "Lisbon, Humberto Delgado Airport",
+        "status_label": "Delayed",
+        "is_delayed": false
+      }
+    ]
+  },
+  {
+    "id": "3",
+    "origin": "Toulouse",
+    "destination": "Saint Denis",
+    "image_url": "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?q=80&w=2070&auto=format&fit=crop",
+    "reference": "NZ99P9",
+    "traveler_count": 1,
+    "status": "Past",
+    "total_duration": "11h35",
+    "departure_label": "Nov 8, 2024",
+    "trip_type": "One way",
+    "segments": []
+  },
+  {
+    "id": "4",
+    "origin": "Toulouse",
+    "destination": "Saint Denis",
+    "image_url": "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?q=80&w=2070&auto=format&fit=crop",
+    "reference": "NZ29P1",
+    "traveler_count": 1,
+    "status": "Past",
+    "total_duration": "11h35",
+    "departure_label": "Jan 8, 2024",
+    "trip_type": "One way",
+    "segments": []
+  }
+]
