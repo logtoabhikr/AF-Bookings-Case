@@ -18,7 +18,7 @@ Modern Stack: Latest AGP, Kotlin 2.2+, and Material 3.
 Architecture: Strict separation of concerns.
 
 ### Tech Stack
-Language: Kotlin (2.2.0+)
+Language: Kotlin (2.2.+)
 
 UI Toolkit: Jetpack Compose (Material 3)
 
@@ -42,10 +42,8 @@ Contains UseCases and Repository Interfaces.
 
 Models: Booking, Segment (Sealed Interface for Polymorphic Flights/Transfers).
 
-Zero Android dependencies.
-
 Data Layer
-Repository Impl: AssetBookingRepository reads local JSON.
+Repository Impl: AFRepositoryImpl reads local JSON.
 
 Hilt Module: Provides AssetManager directly to avoid leaking Context.
 
@@ -54,7 +52,7 @@ Parser: Kotlinx Serialization for efficient JSON parsing.
 UI Layer
 ViewModel: Exposes StateFlow<UiState> (Loading/Success/Error).
 
-Composables: stateless, preview-ready UI components.
+Composable: stateless, preview-ready UI components.
 
 
 #### Developer
