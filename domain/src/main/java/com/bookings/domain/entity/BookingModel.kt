@@ -1,6 +1,5 @@
 package com.bookings.domain.entity
 
-//@Stable
 data class Booking(
     val id: String,
     val origin: String,
@@ -12,12 +11,12 @@ data class Booking(
     val totalDuration: String,
     val departureLabel: String,
     val tripType: String,
-    val segments: List<Segment>
+    val trips: List<Trip>
 )
 
 enum class BookingStatus { UPCOMING, PAST, UNKNOWN }
 
-sealed interface Segment {
+sealed interface Trip {
     data class Flight(
         val date: String,
         val timeScheduled: String,
@@ -25,9 +24,9 @@ sealed interface Segment {
         val airport: String,
         val statusLabel: String?,
         val isDelayed: Boolean
-    ) : Segment
+    ) : Trip
 
     data class Transfer(
         val duration: String
-    ) : Segment
+    ) : Trip
 }

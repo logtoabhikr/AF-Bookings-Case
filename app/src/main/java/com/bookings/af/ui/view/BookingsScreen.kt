@@ -55,7 +55,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.AsyncImage
 import com.bookings.af.R
 import com.bookings.af.ui.components.BookingsTabItem
-import com.bookings.af.ui.components.ReferencePnrView
+import com.bookings.af.ui.components.ReservationPnrUI
 import com.bookings.af.ui.theme.AFBlue
 import com.bookings.af.ui.theme.SurfaceGray
 import com.bookings.af.ui.theme.TabsGray
@@ -87,11 +87,9 @@ fun BookingsScreen(
                     Text(
                         text = stringResource(R.string.title_my_bookings),
                         style = MaterialTheme.typography.titleMedium,
-                        color = TextSecondary,
-                        modifier = Modifier.padding(vertical = 16.dp)
+                        color = MaterialTheme.colorScheme.onSurface,
                     )
                 }, colors = TopAppBarDefaults.topAppBarColors(containerColor = SurfaceGray))
-
                 Box(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -180,7 +178,6 @@ private fun BookingsPagerContent(
         val filtered = bookings.filter {
             if (isPastTab) it.status == BookingStatus.PAST else it.status == BookingStatus.UPCOMING
         }
-
         if (filtered.isEmpty()) {
             Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                 Text(
@@ -222,14 +219,12 @@ fun BookingCard(booking: Booking, onClick: () -> Unit) {
             )
 
             Column(modifier = Modifier.padding(16.dp)) {
-
                 Text(
                     text = "${booking.origin} to ${booking.destination}",
                     style = MaterialTheme.typography.titleMedium,
                     fontWeight = FontWeight.SemiBold,
                     color = Color.Black
                 )
-
                 Text(
                     text = booking.departureLabel,
                     style = MaterialTheme.typography.bodyMedium,
@@ -241,19 +236,15 @@ fun BookingCard(booking: Booking, onClick: () -> Unit) {
                     modifier = Modifier.fillMaxWidth(),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    ReferencePnrView(booking.reference)
-
+                    ReservationPnrUI(booking.reference)
                     Spacer(modifier = Modifier.width(12.dp))
-
                     Icon(
                         imageVector = Icons.Default.Person,
                         contentDescription = stringResource(R.string.app_name),
                         tint = TextSecondary,
                         modifier = Modifier.size(18.dp)
                     )
-
                     Spacer(modifier = Modifier.width(4.dp))
-
                     Text(
                         text = booking.travelerCount.toString(),
                         style = MaterialTheme.typography.bodyMedium,

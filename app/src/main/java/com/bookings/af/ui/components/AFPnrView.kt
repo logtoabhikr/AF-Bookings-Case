@@ -15,7 +15,7 @@ import androidx.compose.ui.unit.dp
 import com.bookings.af.ui.theme.AFBlue
 
 @Composable
-fun ReferencePnrView(txt: String) = Surface(
+fun ReservationPnrUI(txt: String) = Surface(
     color = AFBlue,
     shape = CircleShape,
     modifier = Modifier.height(28.dp)

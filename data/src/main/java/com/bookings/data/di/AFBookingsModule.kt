@@ -7,16 +7,28 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import kotlinx.serialization.json.Json
 import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
 object AFBookingsModule {
+
     @Provides
     @Singleton
     fun provideAssetManager(
         @ApplicationContext context: Context
     ): AssetManager {
         return context.assets
+    }
+
+    @Provides
+    @Singleton
+    fun provideJson(): Json {
+        return Json {
+            isLenient = true
+            ignoreUnknownKeys = true
+            coerceInputValues = true
+        }
     }
 }

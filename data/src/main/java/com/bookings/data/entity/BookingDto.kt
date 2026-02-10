@@ -16,11 +16,11 @@ data class BookingDto(
     @SerialName("total_duration") val totalDuration: String,
     @SerialName("departure_label") val departureLabel: String,
     @SerialName("trip_type") val tripType: String,
-    @SerialName("segments") val segments: List<SegmentDto> = emptyList()
+    @SerialName("trips") val trips: List<TripDto> = emptyList()
 )
 
 @Serializable
-data class SegmentDto(
+data class TripDto(
     /** "FLIGHT" or "TRANSFER" **/
     @SerialName("type") val type: String,
     @SerialName("date") val date: String? = null,

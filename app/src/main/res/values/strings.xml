@@ -10,7 +10,7 @@
     <string name="label_departure_ref">Departure</string>
     <string name="label_transfer_time">Transfer time</string>
     <string name="label_trip_duration">Total trip duration</string>
-
+    <string name="label_account_msg">We are currently tailoring a bespoke account experience just for you. Merci for your patience.</string>
     <string name="error_message">Error: %s</string>
     <string name="error_generic">Something went wrong</string>
     <string name="error_not_found">No bookings found</string>

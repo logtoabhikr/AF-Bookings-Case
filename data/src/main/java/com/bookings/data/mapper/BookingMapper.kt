@@ -1,10 +1,10 @@
 package com.bookings.data.mapper
 
 import com.bookings.data.entity.BookingDto
-import com.bookings.data.entity.SegmentDto
+import com.bookings.data.entity.TripDto
 import com.bookings.domain.entity.Booking
 import com.bookings.domain.entity.BookingStatus
-import com.bookings.domain.entity.Segment
+import com.bookings.domain.entity.Trip
 
 fun BookingDto.toDomain(): Booking {
     return Booking(
@@ -22,15 +22,15 @@ fun BookingDto.toDomain(): Booking {
         totalDuration = this.totalDuration,
         departureLabel = this.departureLabel,
         tripType = this.tripType,
-        segments = this.segments.mapNotNull { it.toDomain() }
+        trips = this.trips.mapNotNull { it.toDomain() }
     )
 }
 
-fun SegmentDto.toDomain(): Segment? {
+fun TripDto.toDomain(): Trip? {
     return when (this.type.uppercase()) {
         "FLIGHT" -> {
             if (date != null && timeScheduled != null && airport != null) {
-                Segment.Flight(
+                Trip.Flight(
                     date = date,
                     timeScheduled = timeScheduled,
                     timeActual = timeActual,
@@ -44,7 +44,7 @@ fun SegmentDto.toDomain(): Segment? {
         }
         "TRANSFER" -> {
             if (duration != null) {
-                Segment.Transfer(duration = duration)
+                Trip.Transfer(duration = duration)
             } else {
                 null
             }

@@ -10,7 +10,7 @@
     "total_duration": "11h35",
     "departure_label": "Nov 8, 2024",
     "trip_type": "Round Trip",
-    "segments": [
+    "trips": [
       {
         "type": "FLIGHT",
         "date": "Sat, Oct 21",
@@ -64,7 +64,7 @@
     "total_duration": "5h10",
     "departure_label": "Sat, Oct 21",
     "trip_type": "Round trip",
-    "segments": [
+    "trips": [
       {
         "type": "FLIGHT",
         "date": "Sat, Oct 21",
@@ -109,7 +109,7 @@
     "total_duration": "11h35",
     "departure_label": "Nov 8, 2024",
     "trip_type": "One way",
-    "segments": []
+    "trips": []
   },
   {
     "id": "4",
@@ -122,6 +122,6 @@
     "total_duration": "11h35",
     "departure_label": "Jan 8, 2024",
     "trip_type": "One way",
-    "segments": []
+    "trips": []
   }
 ]
