@@ -382,7 +382,7 @@ fun FlightCard(flight: Trip.Flight) {
                 if (flight.timeActual != null) {
                     Spacer(Modifier.width(8.dp))
                     Text(
-                        text = flight.timeActual ?: "",
+                        text = flight.timeActual.orEmpty(),
                         fontWeight = FontWeight.Bold,
                         style = MaterialTheme.typography.titleMedium,
                         color = if (flight.isDelayed) DelayRed else SuccessGreen
@@ -397,7 +397,7 @@ fun FlightCard(flight: Trip.Flight) {
                     shape = RoundedCornerShape(8.dp)
                 ) {
                     Text(
-                        text = flight.statusLabel ?: "",
+                        text = flight.statusLabel.orEmpty(),
                         color = if (flight.isDelayed) DelayRed else SuccessGreen,
                         fontSize = 10.sp,
                         fontWeight = FontWeight.Bold,

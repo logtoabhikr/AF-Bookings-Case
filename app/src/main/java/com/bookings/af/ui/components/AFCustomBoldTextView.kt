@@ -11,12 +11,12 @@ import androidx.compose.ui.unit.sp
 import com.bookings.af.ui.theme.TextSecondary
 
 @Composable
-fun CustomBoldTextView(modifier: Modifier, txt: String, boldTxt: String) {
+fun CustomBoldTextView(modifier: Modifier, txtResourceId: String, boldTxt: String) {
     Text(
         modifier = modifier,
         text = buildAnnotatedString {
             withStyle(style = SpanStyle(color = TextSecondary)) {
-                append(txt)
+                append(txtResourceId)
             }
             append(" ")
             withStyle(style = SpanStyle(fontWeight = FontWeight.SemiBold)) {

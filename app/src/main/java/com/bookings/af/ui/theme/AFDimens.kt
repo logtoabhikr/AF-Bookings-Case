@@ -14,5 +14,5 @@ data class AFDimens(
     val iconS: Dp = 20.dp,
     val iconM: Dp = 24.dp,
     val headerHeight: Dp = 260.dp,
-    val sheetOverlap: Dp = 70.dp,
+    val sheetOverlap: Dp = 70.dp
 )

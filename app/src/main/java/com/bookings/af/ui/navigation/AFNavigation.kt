@@ -25,16 +25,16 @@ import com.bookings.domain.utils.Constants
 enum class AppDestinations(
     val route: String,
     val label: String,
-    val icon: ImageVector,
+    val icon: ImageVector
 ) {
     Booking("booking_route", Constants.BOOKING_TITLE, Icons.Default.DateRange),
-    Settings("settings_route", Constants.ACCOUNT_TITLE, Icons.Default.Person),
+    Settings("settings_route", Constants.ACCOUNT_TITLE, Icons.Default.Person)
 }
 
 @Composable
 fun AFNavGraph(
-    navController: NavHostController,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    navController: NavHostController
 ) {
 
     NavHost(

@@ -20,13 +20,12 @@ import com.bookings.af.ui.theme.AFBlue
 
 @Composable
 fun BookingsTabItem(
+    modifier: Modifier = Modifier,
     title: String,
     isSelected: Boolean,
-    modifier: Modifier = Modifier,
     onClick: () -> Unit
 ) {
     Box(
-        contentAlignment = Alignment.Center,
         modifier = modifier
             .fillMaxHeight()
             .then(
@@ -38,7 +37,8 @@ fun BookingsTabItem(
                     Modifier
                 }
             )
-            .clickable(onClick = onClick)
+            .clickable(onClick = onClick),
+        contentAlignment = Alignment.Center
     ) {
         Text(
             modifier = Modifier.semantics { contentDescription = title },

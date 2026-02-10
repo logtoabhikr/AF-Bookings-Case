@@ -17,7 +17,7 @@ class BookingsViewModel @Inject constructor(private val bookingsUseCase: Booking
     ViewModel() {
 
     private val _uiState = MutableStateFlow<BookingsUiState>(BookingsUiState.Loading)
-    val uiState = _uiState.asStateFlow()
+    internal val uiState = _uiState.asStateFlow()
 
     init {
         fetchBookings()
@@ -25,21 +25,12 @@ class BookingsViewModel @Inject constructor(private val bookingsUseCase: Booking
 
     fun fetchBookings() {
         viewModelScope.launch {
-            _uiState.value = BookingsUiState.Loading
             bookingsUseCase()
                 .collect { result ->
                     when (result) {
-                        is Result.Loading -> {
-                            _uiState.value = BookingsUiState.Loading
-                        }
-
-                        is Result.Success -> {
-                            _uiState.update { BookingsUiState.Success(result.data) }
-                        }
-
-                        is Result.Error -> {
-                            _uiState.update { BookingsUiState.Error(result.message) }
-                        }
+                        is Result.Loading -> _uiState.value = BookingsUiState.Loading
+                        is Result.Success -> _uiState.update { BookingsUiState.Success(result.data) }
+                        is Result.Error -> _uiState.update { BookingsUiState.Error(result.message) }
                     }
                 }
         }

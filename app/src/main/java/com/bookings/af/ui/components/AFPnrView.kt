@@ -16,17 +16,17 @@ import com.bookings.af.ui.theme.AFBlue
 
 @Composable
 fun ReservationPnrUI(txt: String) = Surface(
+    modifier = Modifier.height(28.dp),
     color = AFBlue,
-    shape = CircleShape,
-    modifier = Modifier.height(28.dp)
+    shape = CircleShape
 ) {
     Text(
+        modifier = Modifier
+            .padding(horizontal = 12.dp)
+            .wrapContentHeight(),
         text = txt,
         style = MaterialTheme.typography.labelSmall,
         fontWeight = FontWeight.Bold,
-        color = Color.White,
-        modifier = Modifier
-            .padding(horizontal = 12.dp)
-            .wrapContentHeight()
+        color = Color.White
     )
 }

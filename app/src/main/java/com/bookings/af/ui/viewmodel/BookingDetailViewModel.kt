@@ -21,7 +21,7 @@ class BookingDetailViewModel @Inject constructor(
 
     private val bookingId: String = checkNotNull(savedStateHandle[Constants.ARG_BOOKING_ID])
     private val _uiState = MutableStateFlow<BookingDetailUiState>(BookingDetailUiState.Loading)
-    val uiState = _uiState.asStateFlow()
+    internal val uiState = _uiState.asStateFlow()
 
     init {
         fetchBooking()
@@ -29,16 +29,14 @@ class BookingDetailViewModel @Inject constructor(
 
     fun fetchBooking() {
         viewModelScope.launch {
-            viewModelScope.launch {
-                bookingDetailUseCase(bookingId)
-                    .collect { result ->
-                        when(result) {
-                            is Result.Loading -> _uiState.value = BookingDetailUiState.Loading
-                            is Result.Success -> _uiState.value = BookingDetailUiState.Success(result.data)
-                            is Result.Error -> _uiState.value = BookingDetailUiState.Error
-                        }
+            bookingDetailUseCase(bookingId)
+                .collect { result ->
+                    _uiState.value = when (result) {
+                        is Result.Loading -> BookingDetailUiState.Loading
+                        is Result.Success -> BookingDetailUiState.Success(result.data)
+                        is Result.Error -> BookingDetailUiState.Error
                     }
-            }
+                }
         }
     }
 }

@@ -74,7 +74,7 @@ fun AFAppUI() {
             }
         },
         navigationSuiteColors = NavigationSuiteDefaults.colors(
-            navigationBarContainerColor = Color.White,
+            navigationBarContainerColor = Color.White
         )
     ) {
         AFNavGraph(navController = navController, modifier = Modifier)

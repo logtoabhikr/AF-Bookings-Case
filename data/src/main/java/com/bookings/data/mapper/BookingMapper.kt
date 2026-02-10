@@ -8,26 +8,26 @@ import com.bookings.domain.entity.Trip
 
 fun BookingDto.toDomain(): Booking {
     return Booking(
-        id = this.id,
-        origin = this.origin,
-        destination = this.destination,
-        imageUrl = this.imageUrl,
-        reference = this.reference,
-        travelerCount = this.travelerCount,
-        status = when (this.status.uppercase()) {
+        id = id,
+        origin = origin,
+        destination = destination,
+        imageUrl = imageUrl,
+        reference = reference,
+        travelerCount = travelerCount,
+        status = when (status.uppercase()) {
             "UPCOMING" -> BookingStatus.UPCOMING
             "PAST" -> BookingStatus.PAST
             else -> BookingStatus.UNKNOWN
         },
-        totalDuration = this.totalDuration,
-        departureLabel = this.departureLabel,
-        tripType = this.tripType,
-        trips = this.trips.mapNotNull { it.toDomain() }
+        totalDuration = totalDuration,
+        departureLabel = departureLabel,
+        tripType = tripType,
+        trips = trips.mapNotNull { it.toDomain() }
     )
 }
 
 fun TripDto.toDomain(): Trip? {
-    return when (this.type.uppercase()) {
+    return when (type.uppercase()) {
         "FLIGHT" -> {
             if (date != null && timeScheduled != null && airport != null) {
                 Trip.Flight(
@@ -42,6 +42,7 @@ fun TripDto.toDomain(): Trip? {
                 null
             }
         }
+
         "TRANSFER" -> {
             if (duration != null) {
                 Trip.Transfer(duration = duration)
@@ -49,6 +50,7 @@ fun TripDto.toDomain(): Trip? {
                 null
             }
         }
+
         else -> null
     }
 }
