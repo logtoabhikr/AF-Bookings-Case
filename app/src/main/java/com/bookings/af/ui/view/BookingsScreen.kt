@@ -57,6 +57,7 @@ import com.bookings.af.R
 import com.bookings.af.ui.components.BookingsTabItem
 import com.bookings.af.ui.components.ReservationPnrUI
 import com.bookings.af.ui.theme.AFBlue
+import com.bookings.af.ui.theme.AFTheme
 import com.bookings.af.ui.theme.SurfaceGray
 import com.bookings.af.ui.theme.TabsGray
 import com.bookings.af.ui.theme.TextSecondary
@@ -93,10 +94,10 @@ fun BookingsScreen(
                 Box(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(horizontal = 16.dp)
-                        .height(36.dp)
-                        .background(TabsGray, RoundedCornerShape(8.dp))
-                        .padding(2.dp)
+                        .padding(horizontal = AFTheme.dimens.spacingL)
+                        .height(AFTheme.dimens.tabsHeight)
+                        .background(TabsGray, RoundedCornerShape(AFTheme.dimens.spacingM))
+                        .padding(AFTheme.dimens.spacingES)
                 ) {
                     Row(Modifier.fillMaxSize()) {
                         titles.forEachIndexed { index, title ->
@@ -188,8 +189,8 @@ private fun BookingsPagerContent(
             }
         } else {
             LazyColumn(
-                contentPadding = PaddingValues(16.dp),
-                verticalArrangement = Arrangement.spacedBy(16.dp)
+                contentPadding = PaddingValues(AFTheme.dimens.spacingL),
+                verticalArrangement = Arrangement.spacedBy(AFTheme.dimens.spacingL)
             ) {
                 items(filtered, key = { it.id }) { booking ->
                     BookingCard(booking, onClick = { onClick(booking.id) })

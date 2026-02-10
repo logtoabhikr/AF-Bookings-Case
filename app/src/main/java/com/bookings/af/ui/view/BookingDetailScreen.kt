@@ -65,6 +65,7 @@ import com.bookings.af.ui.components.CustomBoldTextView
 import com.bookings.af.ui.components.ReservationPnrUI
 import com.bookings.af.ui.theme.AFBlue
 import com.bookings.af.ui.theme.AFBlueLight
+import com.bookings.af.ui.theme.AFTheme
 import com.bookings.af.ui.theme.CardGray
 import com.bookings.af.ui.theme.DelayRed
 import com.bookings.af.ui.theme.SuccessBg
@@ -116,8 +117,7 @@ fun DetailContents(
     onBack: () -> Unit
 ) {
     val scrollState = rememberScrollState()
-    val headerHeight = 260.dp
-    val sheetOverlap = 70.dp
+
     val headerAlpha by remember {
         derivedStateOf {
             (1f - (scrollState.value / 600f)).coerceIn(
@@ -176,7 +176,7 @@ fun DetailContents(
                 contentScale = ContentScale.Crop,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(headerHeight)
+                    .height(AFTheme.dimens.headerHeight)
                     .graphicsLayer {
                         alpha = headerAlpha
                         translationY = -scrollState.value * 0.5f
@@ -189,14 +189,14 @@ fun DetailContents(
                     .verticalScroll(scrollState)
                     .padding(bottom = innerPadding.calculateBottomPadding())
             ) {
-                Spacer(Modifier.height(headerHeight - sheetOverlap))
+                Spacer(Modifier.height(AFTheme.dimens.headerHeight - AFTheme.dimens.sheetOverlap))
                 Text(
                     text = "${booking.origin}\n${booking.destination}",
                     style = MaterialTheme.typography.headlineMedium,
                     fontWeight = FontWeight.Medium,
                     color = Color.White,
                     lineHeight = 32.sp,
-                    modifier = Modifier.padding(horizontal = 24.dp)
+                    modifier = Modifier.padding(horizontal = AFTheme.dimens.spacingXL)
                 )
                 Column(
                     Modifier

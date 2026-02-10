@@ -8,6 +8,9 @@ import androidx.compose.material3.dynamicDarkColorScheme
 import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.ReadOnlyComposable
+import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 
@@ -45,6 +48,18 @@ private val DarkColorScheme = darkColorScheme(
     tertiaryContainer = SuccessBgDark
 )
 
+val LocalAFDimens = staticCompositionLocalOf {
+    AFDimens()
+}
+
+object AFTheme {
+    val dimens: AFDimens
+        @Composable
+        @ReadOnlyComposable
+        /** Optimization hint for compiler **/
+        get() = LocalAFDimens.current
+}
+
 @Composable
 fun AFBookingsTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
@@ -60,10 +75,12 @@ fun AFBookingsTheme(
         darkTheme -> DarkColorScheme
         else -> LightColorScheme
     }
-
-    MaterialTheme(
-        colorScheme = colorScheme,
-        typography = Typography,
-        content = content
-    )
+    val dimens = AFDimens()
+    CompositionLocalProvider(LocalAFDimens provides dimens) {
+        MaterialTheme(
+            colorScheme = colorScheme,
+            typography = Typography,
+            content = content
+        )
+    }
 }
