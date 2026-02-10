@@ -132,7 +132,7 @@ fun DetailContents(
         if (isCollapsed) SurfaceGray else Color.Transparent
     )
     val contentColor by animateColorAsState(
-        if (isCollapsed) MaterialTheme.colorScheme.primary else Color.White
+        if (isCollapsed) MaterialTheme.colorScheme.onSurface else Color.White
     )
     Scaffold(
         containerColor = SurfaceGray,
@@ -143,7 +143,7 @@ fun DetailContents(
                         Text(
                             "${booking.origin} - ${booking.destination}",
                             style = MaterialTheme.typography.titleMedium,
-                            color = MaterialTheme.colorScheme.primary
+                            color = MaterialTheme.colorScheme.onSurface
                         )
                     }
                 },
