@@ -7,6 +7,7 @@ simulating an airline booking management interface. Built with Kotlin, Jetpack C
 
 <img width="240" height="400" alt="Screenshot_20260209_192030" src="https://github.com/user-attachments/assets/3a5fd93f-bcb4-4b61-97bc-770525d6dcb9" />
 <img width="240" height="400" alt="Screenshot_20260209_192044" src="https://github.com/user-attachments/assets/87dfcc55-bdfe-4311-b567-e5431f174d51" />
+<img width="240" height="400" alt="Screenshot_20260210_162756" src="https://github.com/user-attachments/assets/98c24523-6907-4530-8b49-0e6e6edce67c" />
 
 ### Project Overview
 This project demonstrates a production-grade implementation of a booking detail screen and list view, focusing on:
