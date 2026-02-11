@@ -16,12 +16,12 @@ This project demonstrates a production-grade implementation of a booking detail 
 
 Complex UI/UX: Custom Tab UI/UX, Custom drawn timelines, parallax headers.
 
-Modern Stack: Latest AGP, Kotlin 2.2+, and Material 3.
+Modern Stack: Latest AGP, Kotlin 2.3.+, and Material 3.
 
 Architecture: Strict separation of concerns.
 
 ### Tech Stack
-Language: Kotlin (2.2.+)
+Language: Kotlin (2.3.+)
 
 UI Toolkit: Jetpack Compose (Material 3)
 
@@ -35,7 +35,7 @@ Image Loading: Coil
 
 Navigation: Jetpack Navigation & Adaptive Navigation Suite
 
-Build System: Gradle 8.+ (Version Catalogs)
+Build System: Gradle 9.+ (Version Catalogs, "Built-in Kotlin" and Type-Safe Navigation)
 
 ### Architecture
 The app follows the Clean Architecture principles:
