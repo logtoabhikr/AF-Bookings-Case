@@ -3,7 +3,6 @@ plugins {
     alias(libs.plugins.hilt)
     alias(libs.plugins.ksp)
     alias(libs.plugins.serialization)
-    alias(libs.plugins.kotlin.android)
 }
 
 android {
@@ -42,7 +41,6 @@ dependencies {
     implementation(libs.coroutines.core)
     implementation(libs.hilt.android)
     ksp(libs.hilt.kapt)
-    implementation(libs.hilt.navigation.compose)
     testImplementation(libs.junit)
     testImplementation(libs.kotlinx.coroutines.test)
     androidTestImplementation(libs.androidx.junit)

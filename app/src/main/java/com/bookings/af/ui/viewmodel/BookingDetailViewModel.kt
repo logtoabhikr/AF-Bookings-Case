@@ -3,9 +3,10 @@ package com.bookings.af.ui.viewmodel
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.navigation.toRoute
+import com.bookings.af.ui.navigation.DetailRoute
 import com.bookings.af.ui.viewstate.BookingDetailUiState
 import com.bookings.domain.usecase.BookingDetailUseCase
-import com.bookings.domain.utils.Constants
 import com.bookings.domain.utils.Result
 import dagger.hilt.android.lifecycle.HiltViewModel
 import jakarta.inject.Inject
@@ -19,7 +20,7 @@ class BookingDetailViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
-    private val bookingId: String = checkNotNull(savedStateHandle[Constants.ARG_BOOKING_ID])
+    private val bookingId: String = savedStateHandle.toRoute<DetailRoute>().bookingId
     private val _uiState = MutableStateFlow<BookingDetailUiState>(BookingDetailUiState.Loading)
     internal val uiState = _uiState.asStateFlow()
 
