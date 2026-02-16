@@ -20,7 +20,7 @@ class AFRepositoryImpl @Inject constructor(
     private val jsonParser: Json,
 ) : AFRepository {
 
-    override suspend fun getBookings(): Flow<Result<List<Booking>>> = flow {
+    override fun getBookings(): Flow<Result<List<Booking>>> = flow {
         try {
             emit(Result.Loading)
             val bookings = assetManager.open(Constants.ASSET_FILE_BOOKINGS)

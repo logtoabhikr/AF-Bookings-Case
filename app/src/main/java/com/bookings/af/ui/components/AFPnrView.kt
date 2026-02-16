@@ -12,12 +12,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import com.bookings.af.ui.theme.AFBlue
 
 @Composable
 fun ReservationPnrUI(txt: String) = Surface(
     modifier = Modifier.height(28.dp),
-    color = AFBlue,
+    color = MaterialTheme.colorScheme.primary,
     shape = CircleShape
 ) {
     Text(

@@ -9,7 +9,7 @@ import com.bookings.af.ui.viewstate.BookingDetailUiState
 import com.bookings.domain.usecase.BookingDetailUseCase
 import com.bookings.domain.utils.Result
 import dagger.hilt.android.lifecycle.HiltViewModel
-import jakarta.inject.Inject
+import javax.inject.Inject
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch

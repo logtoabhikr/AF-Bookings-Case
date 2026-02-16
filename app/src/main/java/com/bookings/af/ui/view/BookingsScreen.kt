@@ -50,53 +50,71 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import coil.compose.AsyncImage
 import com.bookings.af.R
 import com.bookings.af.ui.components.BookingsTabItem
 import com.bookings.af.ui.components.ReservationPnrUI
-import com.bookings.af.ui.theme.AFBlue
 import com.bookings.af.ui.theme.AFTheme
-import com.bookings.af.ui.theme.SurfaceGray
-import com.bookings.af.ui.theme.TabsGray
-import com.bookings.af.ui.theme.TextSecondary
 import com.bookings.af.ui.viewmodel.BookingsViewModel
 import com.bookings.af.ui.viewstate.BookingsUiState
 import com.bookings.domain.entity.Booking
 import com.bookings.domain.entity.BookingStatus
+import com.bookings.domain.utils.Constants
 import kotlinx.coroutines.launch
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun BookingsScreen(
     viewModel: BookingsViewModel = hiltViewModel(),
     onBookingClick: (String) -> Unit
 ) {
     val uiState by viewModel.uiState.collectAsState()
+
+    BookingsScreenUI(
+        uiState = uiState,
+        onBookingClick = onBookingClick,
+        onRetry = { viewModel.fetchBookings() }
+    )
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+private fun BookingsScreenUI(
+    uiState: BookingsUiState,
+    onBookingClick: (String) -> Unit,
+    onRetry: () -> Unit
+) {
     val snackBarHostState = remember { SnackbarHostState() }
     val pagerState = rememberPagerState(pageCount = { 2 })
     val scope = rememberCoroutineScope()
     val titles = listOf(stringResource(R.string.tab_upcoming), stringResource(R.string.tab_past))
 
     Scaffold(
-        containerColor = SurfaceGray,
+        containerColor = MaterialTheme.colorScheme.background,
         snackbarHost = { SnackbarHost(hostState = snackBarHostState) },
         topBar = {
             Column {
-                CenterAlignedTopAppBar(title = {
-                    Text(
-                        text = stringResource(R.string.title_my_bookings),
-                        style = MaterialTheme.typography.titleMedium,
-                        color = MaterialTheme.colorScheme.onSurface,
-                    )
-                }, colors = TopAppBarDefaults.topAppBarColors(containerColor = SurfaceGray))
+                CenterAlignedTopAppBar(
+                    title = {
+                        Text(
+                            text = stringResource(R.string.title_my_bookings),
+                            style = MaterialTheme.typography.titleMedium,
+                            color = MaterialTheme.colorScheme.onSurface,
+                        )
+                    },
+                    colors = TopAppBarDefaults.topAppBarColors(containerColor = MaterialTheme.colorScheme.surface)
+                )
                 Box(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(horizontal = AFTheme.dimens.spacingL)
                         .height(AFTheme.dimens.tabsHeight)
-                        .background(TabsGray, RoundedCornerShape(AFTheme.dimens.spacingM))
+                        .background(
+                            MaterialTheme.colorScheme.inverseOnSurface,
+                            RoundedCornerShape(AFTheme.dimens.spacingM)
+                        )
                         .padding(AFTheme.dimens.spacingES)
                 ) {
                     Row(Modifier.fillMaxSize()) {
@@ -126,7 +144,7 @@ fun BookingsScreen(
                         duration = SnackbarDuration.Short
                     )
                 }
-            }, containerColor = AFBlue) {
+            }, containerColor = MaterialTheme.colorScheme.primary) {
                 Icon(
                     imageVector = Icons.Default.Add,
                     contentDescription = stringResource(R.string.app_name),
@@ -140,7 +158,7 @@ fun BookingsScreen(
                 .padding(padding)
                 .fillMaxSize()
         ) {
-            when (val state = uiState) {
+            when (uiState) {
                 is BookingsUiState.Loading -> {
                     CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
                 }
@@ -150,14 +168,14 @@ fun BookingsScreen(
                         modifier = Modifier.align(Alignment.Center),
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
-                        Text(stringResource(R.string.error_message, state.message))
-                        Button(onClick = { viewModel.fetchBookings() }) { Text(stringResource(R.string.btn_retry)) }
+                        Text(stringResource(R.string.error_message, uiState.message))
+                        Button(onClick = { onRetry() }) { Text(stringResource(R.string.btn_retry)) }
                     }
                 }
 
                 is BookingsUiState.Success -> {
                     BookingsPagerContent(
-                        bookings = state.bookings,
+                        bookings = uiState.bookings,
                         pagerState = pagerState,
                         onClick = onBookingClick
                     )
@@ -201,10 +219,10 @@ private fun BookingsPagerContent(
 }
 
 @Composable
-fun BookingCard(booking: Booking, onClick: () -> Unit) {
+private fun BookingCard(booking: Booking, onClick: () -> Unit) {
     Card(
         onClick = onClick,
-        shape = RoundedCornerShape(4.dp),
+        shape = RoundedCornerShape(8.dp),
         colors = CardDefaults.cardColors(containerColor = Color.White),
         elevation = CardDefaults.cardElevation(defaultElevation = 2.dp),
         modifier = Modifier.shadow(2.dp, RoundedCornerShape(8.dp))
@@ -229,7 +247,7 @@ fun BookingCard(booking: Booking, onClick: () -> Unit) {
                 Text(
                     text = booking.departureLabel,
                     style = MaterialTheme.typography.bodyMedium,
-                    color = TextSecondary,
+                    color = MaterialTheme.colorScheme.onSurface,
                     modifier = Modifier.padding(top = 4.dp)
                 )
                 Spacer(modifier = Modifier.height(8.dp))
@@ -242,18 +260,43 @@ fun BookingCard(booking: Booking, onClick: () -> Unit) {
                     Icon(
                         imageVector = Icons.Default.Person,
                         contentDescription = stringResource(R.string.app_name),
-                        tint = TextSecondary,
+                        tint = MaterialTheme.colorScheme.onBackground,
                         modifier = Modifier.size(18.dp)
                     )
                     Spacer(modifier = Modifier.width(4.dp))
                     Text(
                         text = booking.travelerCount.toString(),
                         style = MaterialTheme.typography.bodyMedium,
-                        color = TextSecondary
+                        color = MaterialTheme.colorScheme.onSurface
                     )
                     Spacer(modifier = Modifier.weight(1f))
                 }
             }
         }
     }
+}
+
+@Preview(showBackground = true, name = "Success State - Upcoming")
+@Composable
+fun PreviewBookingsScreenSuccess() {
+
+    val mockList = listOf(
+        Constants.createMockBooking(id = "1", status = BookingStatus.UPCOMING),
+        Constants.createMockBooking(id = "2", status = BookingStatus.UPCOMING)
+    )
+    BookingsScreenUI(
+        uiState = BookingsUiState.Success(bookings = mockList),
+        onBookingClick = {},
+        onRetry = {}
+    )
+}
+
+@Preview(showBackground = true, name = "Error State")
+@Composable
+fun PreviewBookingsScreenError() {
+    BookingsScreenUI(
+        uiState = BookingsUiState.Error(message = stringResource(R.string.error_generic)),
+        onBookingClick = {},
+        onRetry = {}
+    )
 }

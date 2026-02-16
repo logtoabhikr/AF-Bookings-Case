@@ -8,7 +8,7 @@ import javax.inject.Inject
 
 class BookingUseCase @Inject constructor(private val afRepository: AFRepository) {
 
-    suspend operator fun invoke(): Flow<Result<List<Booking>>> {
+    operator fun invoke(): Flow<Result<List<Booking>>> {
         return afRepository.getBookings()
     }
 }

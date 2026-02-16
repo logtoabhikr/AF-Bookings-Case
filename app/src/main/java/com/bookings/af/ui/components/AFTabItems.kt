@@ -16,7 +16,6 @@ import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import com.bookings.af.ui.theme.AFBlue
 
 @Composable
 fun BookingsTabItem(
@@ -43,7 +42,7 @@ fun BookingsTabItem(
         Text(
             modifier = Modifier.semantics { contentDescription = title },
             text = title,
-            color = if (isSelected) AFBlue else MaterialTheme.colorScheme.onSurfaceVariant,
+            color = if (isSelected) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.secondary,
             fontWeight = FontWeight.SemiBold,
             style = MaterialTheme.typography.bodyMedium
         )

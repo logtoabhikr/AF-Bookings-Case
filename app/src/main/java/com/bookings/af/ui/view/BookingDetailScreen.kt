@@ -56,6 +56,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextDecoration
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
@@ -63,21 +64,15 @@ import coil.compose.AsyncImage
 import com.bookings.af.R
 import com.bookings.af.ui.components.CustomBoldTextView
 import com.bookings.af.ui.components.ReservationPnrUI
-import com.bookings.af.ui.theme.AFBlue
-import com.bookings.af.ui.theme.AFBlueLight
 import com.bookings.af.ui.theme.AFTheme
-import com.bookings.af.ui.theme.CardGray
-import com.bookings.af.ui.theme.DelayRed
 import com.bookings.af.ui.theme.SuccessBg
 import com.bookings.af.ui.theme.SuccessGreen
-import com.bookings.af.ui.theme.SurfaceGray
-import com.bookings.af.ui.theme.TextPrimary
-import com.bookings.af.ui.theme.TextSecondary
-import com.bookings.af.ui.theme.TransferBlue
+import com.bookings.af.ui.theme.primaryLight
 import com.bookings.af.ui.viewmodel.BookingDetailViewModel
 import com.bookings.af.ui.viewstate.BookingDetailUiState
 import com.bookings.domain.entity.Booking
 import com.bookings.domain.entity.Trip
+import com.bookings.domain.utils.Constants
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -129,13 +124,13 @@ fun DetailContents(
 
     val isCollapsed by remember { derivedStateOf { scrollState.value > 300 } }
     val topBarColor by animateColorAsState(
-        if (isCollapsed) SurfaceGray else Color.Transparent
+        if (isCollapsed) MaterialTheme.colorScheme.surface else Color.Transparent
     )
     val contentColor by animateColorAsState(
         if (isCollapsed) MaterialTheme.colorScheme.onSurface else Color.White
     )
     Scaffold(
-        containerColor = SurfaceGray,
+        containerColor = MaterialTheme.colorScheme.surface,
         topBar = {
             CenterAlignedTopAppBar(
                 title = {
@@ -203,7 +198,7 @@ fun DetailContents(
                         .padding(horizontal = 24.dp, vertical = 32.dp)
                         .semantics(mergeDescendants = true) { }) {
                     Card(
-                        colors = CardDefaults.cardColors(containerColor = CardGray),
+                        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
                         shape = RoundedCornerShape(8.dp),
                         modifier = Modifier
                             .fillMaxWidth()
@@ -219,7 +214,7 @@ fun DetailContents(
                                     text = stringResource(id = R.string.label_booking_ref),
                                     style = MaterialTheme.typography.bodySmall,
                                     fontWeight = FontWeight.Bold,
-                                    color = TextPrimary
+                                    color = MaterialTheme.colorScheme.onSurface
                                 )
                                 ReservationPnrUI(booking.reference)
                             }
@@ -249,7 +244,11 @@ fun DetailContents(
                                         .rotate(45f)
                                 )
                                 Spacer(Modifier.width(8.dp))
-                                Text(booking.tripType, color = TextSecondary, fontSize = 13.sp)
+                                Text(
+                                    booking.tripType,
+                                    color = MaterialTheme.colorScheme.onSurface,
+                                    fontSize = 13.sp
+                                )
                             }
                         }
                     }
@@ -311,7 +310,7 @@ fun TripTimelineNode(
         val centerX = size.width / 2
         val strokeWidth = 3.dp.toPx()
         val circleRadius = 5.dp.toPx()
-        val lineColor = AFBlue
+        val lineColor = primaryLight
         val topY = 0f
         val bottomY = size.height
         val circleCenterY = size.height / 2
@@ -363,7 +362,7 @@ fun TripTimelineNode(
 @Composable
 fun FlightCard(flight: Trip.Flight) {
     Card(
-        colors = CardDefaults.cardColors(containerColor = CardGray),
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
         shape = RoundedCornerShape(8.dp),
         modifier = Modifier
             .fillMaxWidth()
@@ -385,7 +384,7 @@ fun FlightCard(flight: Trip.Flight) {
                         text = flight.timeActual.orEmpty(),
                         fontWeight = FontWeight.Bold,
                         style = MaterialTheme.typography.titleMedium,
-                        color = if (flight.isDelayed) DelayRed else SuccessGreen
+                        color = if (flight.isDelayed) MaterialTheme.colorScheme.error else SuccessGreen
                     )
                 }
             }
@@ -393,12 +392,12 @@ fun FlightCard(flight: Trip.Flight) {
             if (flight.statusLabel != null) {
                 Spacer(Modifier.height(4.dp))
                 Surface(
-                    color = if (flight.isDelayed) Color(0xFFFFEBEE) else SuccessBg,
+                    color = if (flight.isDelayed) MaterialTheme.colorScheme.errorContainer else SuccessBg,
                     shape = RoundedCornerShape(8.dp)
                 ) {
                     Text(
                         text = flight.statusLabel.orEmpty(),
-                        color = if (flight.isDelayed) DelayRed else SuccessGreen,
+                        color = if (flight.isDelayed) MaterialTheme.colorScheme.error else SuccessGreen,
                         fontSize = 10.sp,
                         fontWeight = FontWeight.Bold,
                         modifier = Modifier.padding(horizontal = 6.dp, vertical = 2.dp)
@@ -412,9 +411,9 @@ fun FlightCard(flight: Trip.Flight) {
 @Composable
 fun TransferCard(transfer: Trip.Transfer) {
     Surface(
-        color = TransferBlue,
+        color = MaterialTheme.colorScheme.primaryFixed,
         shape = RoundedCornerShape(8.dp),
-        border = BorderStroke(1.dp, AFBlueLight),
+        border = BorderStroke(1.dp, MaterialTheme.colorScheme.onPrimary),
         modifier = Modifier
             .fillMaxWidth()
             .height(48.dp)
@@ -427,4 +426,10 @@ fun TransferCard(transfer: Trip.Transfer) {
             transfer.duration
         )
     }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun PreviewDetailContents() {
+    DetailContents(Constants.createMockBooking(id = "1")) { }
 }
