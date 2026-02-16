@@ -37,7 +37,7 @@ class BookingsViewModelTest {
     }
 
     @Test
-    fun `loadBookings updates state to Success when UseCase returns data`() = runTest {
+    fun `loadBookings state to Success when UseCase returns booking`() = runTest {
 
         val mockBookings = listOf(Constants.createMockBooking("1"))
         every { bookingUseCase() } returns flowOf(Result.Success(mockBookings))
@@ -55,7 +55,7 @@ class BookingsViewModelTest {
     }
 
     @Test
-    fun `loadBookings updates state to Error when UseCase fails`() = runTest {
+    fun `loadBookings state to Error when UseCase fails`() = runTest {
 
         val expectedErrorMsg = "Something went wrong"
         every { bookingUseCase() } returns flowOf(Result.Error(expectedErrorMsg))

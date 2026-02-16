@@ -15,7 +15,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.dp
+import com.bookings.af.ui.theme.AFTheme
 
 @Composable
 fun BookingsTabItem(
@@ -30,8 +30,8 @@ fun BookingsTabItem(
             .then(
                 if (isSelected) {
                     Modifier
-                        .shadow(elevation = 2.dp, shape = RoundedCornerShape(6.dp))
-                        .background(Color.White, RoundedCornerShape(6.dp))
+                        .shadow(elevation = AFTheme.dimens.spacingES, shape = RoundedCornerShape(AFTheme.dimens.spacingM))
+                        .background(Color.White, RoundedCornerShape(AFTheme.dimens.spacingM))
                 } else {
                     Modifier
                 }

@@ -12,6 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import com.bookings.af.ui.theme.AFTheme
 
 @Composable
 fun ReservationPnrUI(txt: String) = Surface(
@@ -21,7 +22,7 @@ fun ReservationPnrUI(txt: String) = Surface(
 ) {
     Text(
         modifier = Modifier
-            .padding(horizontal = 12.dp)
+            .padding(horizontal = AFTheme.dimens.spacingL)
             .wrapContentHeight(),
         text = txt,
         style = MaterialTheme.typography.labelSmall,

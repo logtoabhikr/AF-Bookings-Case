@@ -195,16 +195,19 @@ fun DetailContents(
                 )
                 Column(
                     Modifier
-                        .padding(horizontal = 24.dp, vertical = 32.dp)
+                        .padding(
+                            horizontal = AFTheme.dimens.spacingXL,
+                            vertical = AFTheme.dimens.spacingXXL
+                        )
                         .semantics(mergeDescendants = true) { }) {
                     Card(
                         colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
-                        shape = RoundedCornerShape(8.dp),
+                        shape = RoundedCornerShape(AFTheme.dimens.spacingM),
                         modifier = Modifier
                             .fillMaxWidth()
-                            .shadow(2.dp, RoundedCornerShape(8.dp))
+                            .shadow(2.dp, RoundedCornerShape(AFTheme.dimens.spacingM))
                     ) {
-                        Column(Modifier.padding(16.dp)) {
+                        Column(Modifier.padding(AFTheme.dimens.spacingL)) {
                             Row(
                                 Modifier.fillMaxWidth(),
                                 horizontalArrangement = Arrangement.SpaceBetween,
@@ -219,11 +222,11 @@ fun DetailContents(
                                 ReservationPnrUI(booking.reference)
                             }
 
-                            Spacer(Modifier.height(12.dp))
+                            Spacer(Modifier.height(AFTheme.dimens.spacingML))
 
                             Row(verticalAlignment = Alignment.CenterVertically) {
                                 Text(
-                                    modifier = Modifier.padding(end = 6.dp),
+                                    modifier = Modifier.padding(end = AFTheme.dimens.spacingM),
                                     text = stringResource(
                                         id = R.string.label_departure_ref
                                     ),
@@ -235,15 +238,15 @@ fun DetailContents(
                                     fontWeight = FontWeight.Normal,
                                     fontSize = 13.sp
                                 )
-                                Spacer(Modifier.width(16.dp))
+                                Spacer(Modifier.width(AFTheme.dimens.spacingL))
                                 Icon(
                                     painter = painterResource(R.drawable.ic_plane),
                                     stringResource(id = R.string.app_name),
                                     modifier = Modifier
-                                        .size(24.dp)
+                                        .size(AFTheme.dimens.spacingXL)
                                         .rotate(45f)
                                 )
-                                Spacer(Modifier.width(8.dp))
+                                Spacer(Modifier.width(AFTheme.dimens.spacingM))
                                 Text(
                                     booking.tripType,
                                     color = MaterialTheme.colorScheme.onSurface,
@@ -252,13 +255,13 @@ fun DetailContents(
                             }
                         }
                     }
-                    Spacer(Modifier.height(24.dp))
+                    Spacer(Modifier.height(AFTheme.dimens.spacingXL))
                     CustomBoldTextView(
-                        modifier = Modifier.padding(horizontal = 36.dp),
+                        modifier = Modifier.padding(horizontal = AFTheme.dimens.spacingXXL),
                         stringResource(id = R.string.label_trip_duration),
                         booking.totalDuration
                     )
-                    Spacer(Modifier.height(16.dp))
+                    Spacer(Modifier.height(AFTheme.dimens.spacingL))
                     booking.trips.forEachIndexed { index, trip ->
                         TripTimelineRowItem(
                             trip = trip,
@@ -284,7 +287,7 @@ fun TripTimelineRowItem(trip: Trip, isFirst: Boolean, isLast: Boolean) {
         )
         Box(
             modifier = Modifier
-                .padding(bottom = 12.dp)
+                .padding(bottom = AFTheme.dimens.spacingML)
                 .weight(1f)
         ) {
             when (trip) {
@@ -305,7 +308,7 @@ fun TripTimelineNode(
     Canvas(
         modifier = modifier
             .fillMaxHeight()
-            .width(24.dp)
+            .width(AFTheme.dimens.spacingXL)
     ) {
         val centerX = size.width / 2
         val strokeWidth = 3.dp.toPx()
@@ -363,14 +366,14 @@ fun TripTimelineNode(
 fun FlightCard(flight: Trip.Flight) {
     Card(
         colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
-        shape = RoundedCornerShape(8.dp),
+        shape = RoundedCornerShape(AFTheme.dimens.spacingM),
         modifier = Modifier
             .fillMaxWidth()
-            .shadow(2.dp, RoundedCornerShape(8.dp))
+            .shadow(AFTheme.dimens.spacingES, RoundedCornerShape(AFTheme.dimens.spacingM))
     ) {
-        Column(Modifier.padding(12.dp)) {
+        Column(Modifier.padding(AFTheme.dimens.spacingML)) {
             Text(flight.date, fontSize = 12.sp, fontWeight = FontWeight.Bold)
-            Spacer(Modifier.height(4.dp))
+            Spacer(Modifier.height(AFTheme.dimens.spacingS))
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Text(
                     text = flight.timeScheduled,
@@ -379,7 +382,7 @@ fun FlightCard(flight: Trip.Flight) {
                     textDecoration = if (flight.timeActual != null && flight.timeActual != flight.timeScheduled) TextDecoration.LineThrough else null
                 )
                 if (flight.timeActual != null) {
-                    Spacer(Modifier.width(8.dp))
+                    Spacer(Modifier.width(AFTheme.dimens.spacingM))
                     Text(
                         text = flight.timeActual.orEmpty(),
                         fontWeight = FontWeight.Bold,
@@ -390,17 +393,20 @@ fun FlightCard(flight: Trip.Flight) {
             }
             Text(flight.airport, fontSize = 14.sp, fontWeight = FontWeight.Medium)
             if (flight.statusLabel != null) {
-                Spacer(Modifier.height(4.dp))
+                Spacer(Modifier.height(AFTheme.dimens.spacingS))
                 Surface(
                     color = if (flight.isDelayed) MaterialTheme.colorScheme.errorContainer else SuccessBg,
-                    shape = RoundedCornerShape(8.dp)
+                    shape = RoundedCornerShape(AFTheme.dimens.spacingM)
                 ) {
                     Text(
                         text = flight.statusLabel.orEmpty(),
                         color = if (flight.isDelayed) MaterialTheme.colorScheme.error else SuccessGreen,
                         fontSize = 10.sp,
                         fontWeight = FontWeight.Bold,
-                        modifier = Modifier.padding(horizontal = 6.dp, vertical = 2.dp)
+                        modifier = Modifier.padding(
+                            horizontal = AFTheme.dimens.spacingM,
+                            vertical = AFTheme.dimens.spacingES
+                        )
                     )
                 }
             }
@@ -412,7 +418,7 @@ fun FlightCard(flight: Trip.Flight) {
 fun TransferCard(transfer: Trip.Transfer) {
     Surface(
         color = MaterialTheme.colorScheme.primaryFixed,
-        shape = RoundedCornerShape(8.dp),
+        shape = RoundedCornerShape(AFTheme.dimens.spacingM),
         border = BorderStroke(1.dp, MaterialTheme.colorScheme.onPrimary),
         modifier = Modifier
             .fillMaxWidth()
@@ -421,7 +427,7 @@ fun TransferCard(transfer: Trip.Transfer) {
         CustomBoldTextView(
             modifier = Modifier
                 .wrapContentHeight()
-                .padding(horizontal = 16.dp),
+                .padding(horizontal = AFTheme.dimens.spacingL),
             stringResource(R.string.label_transfer_time),
             transfer.duration
         )

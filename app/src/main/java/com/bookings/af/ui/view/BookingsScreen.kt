@@ -51,7 +51,6 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import coil.compose.AsyncImage
 import com.bookings.af.R
@@ -222,10 +221,10 @@ private fun BookingsPagerContent(
 private fun BookingCard(booking: Booking, onClick: () -> Unit) {
     Card(
         onClick = onClick,
-        shape = RoundedCornerShape(8.dp),
+        shape = RoundedCornerShape(AFTheme.dimens.spacingM),
         colors = CardDefaults.cardColors(containerColor = Color.White),
-        elevation = CardDefaults.cardElevation(defaultElevation = 2.dp),
-        modifier = Modifier.shadow(2.dp, RoundedCornerShape(8.dp))
+        elevation = CardDefaults.cardElevation(defaultElevation = AFTheme.dimens.spacingES),
+        modifier = Modifier.shadow(AFTheme.dimens.spacingES, RoundedCornerShape(AFTheme.dimens.spacingM))
     ) {
         Column {
             AsyncImage(
@@ -234,10 +233,10 @@ private fun BookingCard(booking: Booking, onClick: () -> Unit) {
                 contentScale = ContentScale.Crop,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(126.dp)
+                    .height(AFTheme.dimens.bookingCardHeight)
             )
 
-            Column(modifier = Modifier.padding(16.dp)) {
+            Column(modifier = Modifier.padding(AFTheme.dimens.spacingL)) {
                 Text(
                     text = "${booking.origin} to ${booking.destination}",
                     style = MaterialTheme.typography.titleMedium,
@@ -248,22 +247,22 @@ private fun BookingCard(booking: Booking, onClick: () -> Unit) {
                     text = booking.departureLabel,
                     style = MaterialTheme.typography.bodyMedium,
                     color = MaterialTheme.colorScheme.onSurface,
-                    modifier = Modifier.padding(top = 4.dp)
+                    modifier = Modifier.padding(top = AFTheme.dimens.spacingS)
                 )
-                Spacer(modifier = Modifier.height(8.dp))
+                Spacer(modifier = Modifier.height(AFTheme.dimens.spacingM))
                 Row(
                     modifier = Modifier.fillMaxWidth(),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     ReservationPnrUI(booking.reference)
-                    Spacer(modifier = Modifier.width(12.dp))
+                    Spacer(modifier = Modifier.width(AFTheme.dimens.spacingML))
                     Icon(
                         imageVector = Icons.Default.Person,
                         contentDescription = stringResource(R.string.app_name),
                         tint = MaterialTheme.colorScheme.onBackground,
-                        modifier = Modifier.size(18.dp)
+                        modifier = Modifier.size(AFTheme.dimens.spacingL)
                     )
-                    Spacer(modifier = Modifier.width(4.dp))
+                    Spacer(modifier = Modifier.width(AFTheme.dimens.spacingS))
                     Text(
                         text = booking.travelerCount.toString(),
                         style = MaterialTheme.typography.bodyMedium,
